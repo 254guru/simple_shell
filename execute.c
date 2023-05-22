@@ -15,6 +15,27 @@ int execute(char **args)
 	}
 	else if (strcmp(args[0], "exit") == 0)
 	{
+	return (execute_exit(args));
+	}
+	else if (strcmp(args[0], "env") == 0)
+	{
+	return (execute_env());
+	}
+	else
+	{
+	return (execute_command(args));
+	}
+}
+
+/**
+ * execute_exit - Handle the "exit" command
+ *
+ * @args: Array of strings containing command and arguments
+ *
+ * Return: Status code of the command execution
+ */
+int execute_exit(char **args)
+{
 	if (args[1] != NULL)
 	{
 	int status = atoi(args[1]);
@@ -25,9 +46,15 @@ int execute(char **args)
 	{
 	exit(EXIT_SUCCESS);
 	}
-	}
-	else if (strcmp(args[0], "env") == 0)
-	{
+}
+
+/**
+ * execute_env - Handle the "env" command
+ *
+ * Return: Status code of the command execution
+ */
+int execute_env(void)
+{
 	char **env = __environ;
 
 	while (*env != NULL)
@@ -37,9 +64,17 @@ int execute(char **args)
 	env++;
 	}
 	return (1);
-	}
-	else
-	{
+}
+
+/**
+ * execute_command - Execute a command
+ *
+ * @args: Array of strings containing command and arguments
+ *
+ * Return: Status code of the command execution
+ */
+int execute_command(char **args)
+{
 	char *command_path = get_command_path(args[0]);
 
 	if (command_path != NULL)
@@ -71,7 +106,6 @@ int execute(char **args)
 	fputs(": Command not found: ", stdout);
 	fputs(args[0], stdout);
 	fputc('\n', stdout);
-	}
 	}
 	return (0);
 }
