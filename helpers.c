@@ -1,4 +1,14 @@
 #include "main.h"
+/**
+ * _putchar - writes the character c to stdout
+ * @c: character to print
+ *
+ * Return: 1 on success, otherwise -1
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
 
 /**
  * _strlen - Calculate the length of a string
@@ -34,19 +44,39 @@ void free_args(char **args)
 	free(args);
 }
 /**
- * _strcmp - compares two strings
- * @str1: first string
- * @str2: string to compare with str1
+ * _strncpy - copies a string
+ * @dest: destination buffer
+ * @src: source string
+ * @n: maximum number of characters to copy
  *
- * Return: void
+ * Return: pointer to destination buffer
  */
-int _strcmp(const char *str1, const char *str2)
+char *_strncpy(char *dest, const char *src, size_t n)
 {
-	while (*str1 && (*str1 == *str2))
-	{
-		str1++;
-		str2++;
-	}
-	return (*(unsigned char *)str1 - *(unsigned char *)str2);
+	size_t i;
+
+	for (i = 0; i < n && src[i] != '\0'; i++)
+		dest[i] = src[i];
+
+	for (; i < n; i++)
+		dest[i] = '\0';
+
+	return (dest);
 }
+/**
+ * _strcpy - copies a string
+ * @destination: string destination
+ * @source: source string
+ *
+ * Return: destination
+ */
+char *_strcpy(char *destination, const char *source)
+{
+	char *ptr = destination;
+
+	while (*source != '\0')
+	{
+		*ptr++ = *source++;
+	}
+	*ptr = '\0';
 
