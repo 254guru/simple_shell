@@ -70,11 +70,13 @@ int main(int argc, char **argv, char **envp)
 	args = split_line(line);
 	if (args == NULL)
 	continue;
-	if (args != NULL && *args != NULL)
+	/*if (args != NULL && *args != NULL)
 		{
 	if (_strcmp(args[0], "exit") == 0)
 		{
-	if (args[1] != NULL)
+	if (args[1] != NULL)*/
+	if (args != NULL && *args != NULL && _strcmp(args[0], "exit") == 0
+			&& args[1] != NULL)
 	{
 	int exit_status = _atoi(args[1]);
 
