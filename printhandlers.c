@@ -67,4 +67,15 @@ char *_getenv(const char *name)
 
 	return (value);
 }
-
+/**
+ *_fputc - Writes a single character to a stream
+ *@c: The character to be written
+ *@stream: The stream to which the character should be written.
+ *Return: The number of characters written, or EOF on error.
+ */
+int _fputc(int c, FILE *stream)
+{
+	char buf[1];
+	buf[0] = c;
+	return fwrite(buf, 1, 1, stream);
+}
