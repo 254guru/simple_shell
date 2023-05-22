@@ -84,4 +84,21 @@ int _atoi(const char *str)
 	}
 	return (sign * result);
 }
+/**
+ * _strncmp - compare at most n characters of two strings
+ * @s1: first string
+ * @s2: second string
+ * @n: max number of chars to compare
+ *
+ * Return: integer...
+ */
+int _strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t i;
+
+	for (i = 0; i < n && s1[i] && s2[i] && s1[i] == s2[i]; i++)
+		;
+
+	return (i == n ? 0 : (s1[i] - s2[i]));
+}
 
