@@ -59,8 +59,8 @@ int execute_env(void)
 
 	while (*env != NULL)
 	{
-	fputs(*env, stdout);
-	fputc('\n', stdout);
+	_fputs(*env, stdout);
+	_fputc('\n', stdout);
 	env++;
 	}
 	return (1);
@@ -102,10 +102,10 @@ int execute_command(char **args)
 	}
 	else
 	{
-	fputs(program_name, stdout);
-	fputs(": Command not found: ", stdout);
-	fputs(args[0], stdout);
-	fputc('\n', stdout);
+	_fputs(program_name, stdout);
+	_fputs(": Command not found: ", stdout);
+	_fputs(args[0], stdout);
+	_fputc('\n', stdout);
 	}
 	return (0);
 }
