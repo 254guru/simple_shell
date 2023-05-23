@@ -43,6 +43,10 @@ int builtin_cd(char **args);
 int execute_exit(char **args);
 int execute_command(char **args);
 int execute_env(void);
+int cd(char *directory);
+int myunsetenv(char *variable);
+int mysetenv(char *variable, char *value, int overwrite);
+int handle_semicolon(char *line);
 /* helper function prototypes */
 int _atoi(const char *str);
 void free_args(char **args);
@@ -55,5 +59,6 @@ char *_strcpy(char* destination, const char *source);
 int _putchar(char c);
 int _puts(char *str);
 int _fputs(const char *str, FILE *stream);
+int _fputc(int c, FILE *stream);
 #endif /* MAIN_H */
 

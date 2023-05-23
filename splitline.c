@@ -45,4 +45,18 @@ char **split_line(char *line)
 	args[i] = NULL;
 	return (args);
 }
+int handle_semicolon(char *line) {
+  char **commands = split_line(line);
 
+  int i;
+  for (i = 0; commands[i] != NULL; i++) {
+    int status = execute((char **)commands[i]);
+    if (status != 0) {
+      return status;
+    }
+  }
+
+  free_args(commands);
+
+  return 0;
+}
