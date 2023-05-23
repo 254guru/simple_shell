@@ -78,5 +78,26 @@ int _fputc(int c, FILE *stream)
 {
 	char buf[1];
 	buf[0] = c;
-	return fwrite(buf, 1, 1, stream);
+
+	return (fwrite(buf, 1, 1, stream));
 }
+/**
+ * _strcat - Concatenates two strings.
+ * @dest: The destination string.
+ * @src: The source string.
+ *
+ * Return: A pointer to the resulting string.
+ */
+char *_strcat(char *dest, const char *src)
+{
+	size_t dest_len = _strlen(dest);
+	size_t i;
+
+	for (i = 0; src[i] != '\0'; i++)
+	dest[dest_len + i] = src[i];
+
+	dest[dest_len + i] = '\0';
+
+	return (dest);
+}
+

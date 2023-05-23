@@ -45,18 +45,28 @@ char **split_line(char *line)
 	args[i] = NULL;
 	return (args);
 }
-int handle_semicolon(char *line) {
-  char **commands = split_line(line);
+/**
+ * handle_semicolon - Handles the semicolon operator in a line of code.
+ * @line: The input line to process.
+ *
+ * Return: The result of processing the semicolon.
+ */
+int handle_semicolon(char *line)
+{
+	char **commands = split_line(line);
+	int i;
 
-  int i;
-  for (i = 0; commands[i] != NULL; i++) {
-    int status = execute((char **)commands[i]);
-    if (status != 0) {
-      return status;
-    }
-  }
+	for (i = 0; commands[i] != NULL; i++)
+	{
+	int status = execute((char **)commands[i]);
 
-  free_args(commands);
+	if (status != 0)
+	{
+	return (status);
+	}
+	}
 
-  return 0;
+	free_args(commands);
+
+	return (0);
 }

@@ -6,6 +6,7 @@
 #define MAX_TOKENS 64
 #define DELIMITER " \t\n"
 
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
@@ -47,9 +48,13 @@ int cd(char *directory);
 int myunsetenv(char *variable);
 int mysetenv(char *variable, char *value, int overwrite);
 int handle_semicolon(char *line);
+<<<<<<< HEAD
 void non_interactive_mode(char *filename);
 void interactive_mode();
 void process_command(char *command, int counter);
+=======
+int _putenv(char *string);
+>>>>>>> 4a6289a460f2da4587bb123ae467b7eb1598be37
 /* helper function prototypes */
 int _atoi(const char *str);
 void free_args(char **args);
@@ -63,5 +68,8 @@ int _putchar(char c);
 int _puts(char *str);
 int _fputs(const char *str, FILE *stream);
 int _fputc(int c, FILE *stream);
+char *_strcat(char *dest, const char *src);
+int _fputc(int c, FILE *stream);
+
 #endif /* MAIN_H */
 
