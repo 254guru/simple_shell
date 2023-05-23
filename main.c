@@ -57,10 +57,12 @@ int prompt(char **line)
 int main(int argc, char **argv, char **envp)
 {
 	char *line = NULL, **args;
+	int exit_status;
 	int status;
 	(void)argc;
 	(void)envp;
 	program_name = argv[0];
+
 	while (1)
 	{
 		print_prompt();
@@ -77,7 +79,7 @@ int main(int argc, char **argv, char **envp)
 			{
 				if (args[1] != NULL)
 				{
-					int exit_status = _atoi(args[1]);
+					exit_status = _atoi(args[1]);
 
 					free(line);
 					free_args(args);
@@ -93,6 +95,12 @@ int main(int argc, char **argv, char **envp)
 			status = execute(args);
 			free_args(args);
 		}
+		 if (argc == 2) {
+        		non_interactive_mode(argv[1]);
+    		} else {
+        		interactive_mode();
+    		}
+
 		free(line);
 		line = NULL;
 		if (status == EXIT_SUCCESS)
@@ -100,6 +108,5 @@ int main(int argc, char **argv, char **envp)
 		else
 			break;
 	}
-
 	return (0);
 }
