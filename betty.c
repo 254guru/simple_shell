@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * main - main function
+ * print - main function
  *
  * Return: 0
  */
 
-int main(void)
+int print(void)
 {
 	char *message;
 	int len = 14;

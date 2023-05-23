@@ -24,7 +24,7 @@ char *get_command_path(char *command)
 
 	if (path == NULL)
 	{
-		_fprintf(stderr, "Error retrieving PATH variable\n");
+		fprintf(stderr, "Error retrieving PATH variable\n");
 		return (NULL);
 	}
 	token = strtok(path, ":");
@@ -35,7 +35,7 @@ char *get_command_path(char *command)
 
 		if (full_path == NULL)
 		{
-			_fprintf(stderr, "Allocation error\n");
+			fprintf(stderr, "Allocation error\n");
 			free(dir);
 			return (NULL);
 		}
@@ -69,7 +69,7 @@ char *build_command_path(char *directory, char *command)
 	path = malloc(path_len);
 	if (path == NULL)
 	{
-		_fprintf(stderr, "Allocation error\n");
+		fprintf(stderr, "Allocation error\n");
 		exit(EXIT_FAILURE);
 	}
 

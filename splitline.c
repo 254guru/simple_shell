@@ -20,21 +20,27 @@ char **split_line(char *line)
 
 	if (args == NULL)
 	{
-	perror("malloc failed");
-	exit(EXIT_FAILURE);
+		perror("malloc failed");
+		exit(EXIT_FAILURE);
 	}
 	for (arg = strtok(line, DELIM);
 	arg != NULL && i < MAX_ARGS;
 	arg = strtok(NULL, DELIM))
 	{
-	perror("malloc failed");
-	free(args[j]);
-	free(args);
-	return (NULL);
-	}
-	_strncpy(args[i], arg, MAX_ARG_LENGTH);
-	args[i][MAX_ARG_LENGTH] = '\0';
-	i++;
+		args[i] = malloc((MAX_ARG_LENGTH + 1) * sizeof(char));
+		if (args[i] == NULL)
+		{
+			perror("malloc failed");
+			for (j = 0; j < i; j++)
+			{
+				free(args[j]);
+			}
+			free(args);
+			return (NULL);
+		}
+		_strncpy(args[i], arg, MAX_ARG_LENGTH);
+		args[i][MAX_ARG_LENGTH] = '\0';
+		i++;
 	}
 	args[i] = NULL;
 	return (args);

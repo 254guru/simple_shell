@@ -18,15 +18,14 @@
 #include <limits.h>
 #include <ctype.h>
 #include <stdarg.h>
-#include <limits.h>
 
 extern char **environ;
 
+int print(void);
 int prompt(char **line);
 void print_prompt(void);
 ssize_t write(int fd, const void *buf, size_t count);
 char **parse_command(char *command);
-int execute_command(char *command, char **env);
 int builtin_exit(void);
 int builtin_env(char **env);
 int execute(char **args);
@@ -41,6 +40,9 @@ char *get_command_path(char *command);
 char *build_command_path(char *directory, char *command);
 char* getcwd_shell();
 int builtin_cd(char **args);
+int execute_exit(char **args);
+int execute_command(char **args);
+int execute_env(void);
 /* helper function prototypes */
 int _atoi(const char *str);
 void free_args(char **args);

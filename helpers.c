@@ -78,5 +78,8 @@ char *_strcpy(char *destination, const char *source)
 	{
 		*ptr++ = *source++;
 	}
-	*ptr = '\0';
+	ptr = '\0';
+
+	return (destination);
+}
 

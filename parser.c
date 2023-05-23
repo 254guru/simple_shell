@@ -18,13 +18,13 @@ char **parse_command(char *command)
 		return (NULL);
 	}
 
-	token = strtok(command, DELIMETER);
+	token = strtok(command, DELIMITER);
 
 	while (token != NULL)
 	{
 		tokens[i] = token;
 		i++;
-		token = strtok(NULL, DELIMETER);
+		token = strtok(NULL, DELIMITER);
 	}
 
 	tokens[i] = NULL;

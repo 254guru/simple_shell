@@ -51,11 +51,12 @@ char *_getenv(const char *name)
 {
 	char *value = NULL;
 	size_t name_length = strlen(name);
+	int i;
 
 	if (name == NULL || name_length == 0)
 	return (NULL);
 
-	for (int i = 0; environ[i] != NULL; i++)
+	for (i = 0; environ[i] != NULL; i++)
 	{
 	if (strncmp(name, environ[i], name_length) == 0
 		&& environ[i][name_length] == '=')

@@ -1,8 +1,9 @@
 #include "main.h"
 
 /*
- * print_prompt - Prints the shell prompt.
- * Return: Nothing
+ * print_prompt - Prints a prompt to the stdout stream
+ *
+ * Return: 0
  */
 void print_prompt(void)
 {
@@ -30,8 +31,7 @@ int prompt(char **line)
 	free(newLine);
 	return (-1);
 	}
-	else
-	if (bytesRead == 0)
+	else if (bytesRead == 0)
 	{
 	free(newLine);
 	return (0);
@@ -58,49 +58,48 @@ int main(int argc, char **argv, char **envp)
 {
 	char *line = NULL, **args;
 	int status;
-	(void)argc, envp;
+	(void)argc;
+	(void)envp;
 	program_name = argv[0];
 	while (1)
 	{
-	print_prompt();
-	if (prompt(&line) == -1)
-	{
-	exit(0);
-	}
-	args = split_line(line);
-	if (args == NULL)
-	continue;
-	/*if (args != NULL && *args != NULL)
+		print_prompt();
+		if (prompt(&line) == -1)
 		{
-	if (_strcmp(args[0], "exit") == 0)
+			exit(0);
+		}
+		args = split_line(line);
+		if (args == NULL)
+			continue;
+		if (args != NULL && *args != NULL)
 		{
-	if (args[1] != NULL)*/
-	if (args != NULL && *args != NULL && _strcmp(args[0], "exit") == 0
-			&& args[1] != NULL)
-	{
-	int exit_status = _atoi(args[1]);
+			if (_strcmp(args[0], "exit") == 0)
+			{
+				if (args[1] != NULL)
+				{
+					int exit_status = _atoi(args[1]);
 
-	free(line);
-	free_args(args);
-	exit(exit_status);
-	}
+					free(line);
+					free_args(args);
+					exit(exit_status);
+				}
+				else
+				{
+					free(line);
+					free_args(args);
+					exit(0);
+				}
+			}
+			status = execute(args);
+			free_args(args);
+		}
+		free(line);
+		line = NULL;
+		if (status == EXIT_SUCCESS)
+			continue;
 		else
-		{
-	free(line);
-	free_args(args);
-	exit(0);
+			break;
 	}
-	}
-	status = execute(args);
-	free_args(args);
-	}
-	free(line);
-	line = NULL;
-	if (status == EXIT_SUCCESS)
-	continue;
-	else
-	break;
-	}
+
 	return (0);
 }
-
