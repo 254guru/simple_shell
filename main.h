@@ -59,12 +59,9 @@ char *_strcpy(char* destination, const char *source);
 int _putchar(char c);
 int _puts(char *str);
 int _fputs(const char *str, FILE *stream);
-<<<<<<< Updated upstream
 int _fputc(int c, FILE *stream);
-=======
 char *_strcat(char *dest, const char *src);
 int _fputc(int c, FILE *stream);
 
->>>>>>> Stashed changes
 #endif /* MAIN_H */
 
