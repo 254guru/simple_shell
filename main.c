@@ -40,6 +40,7 @@ int prompt(char **line)
 
     bytesRead = getline(&newLine, &bufferSize, stdin);
 
+<<<<<<< HEAD
     if (bytesRead == -1)
     {
         if (flag)
@@ -69,6 +70,33 @@ int prompt(char **line)
         *line = newLine;
         return (1);
     }
+=======
+	if (bytesRead == -1)
+	{
+	free(newLine);
+	return (-1);
+	}
+	else if (bytesRead == 0)
+	{
+	free(newLine);
+	if (feof(stdin))
+	{
+	printf("Control-D (EOF) encountered. Exiting shell.\n");
+	exit(0);
+	}
+	return (0);
+	}
+	else
+	{
+	if (newLine[bytesRead - 1] == '\n')
+	{
+	newLine[bytesRead - 1] = '\0';
+	}
+	free(*line);
+	*line = newLine;
+	return (1);
+	}
+>>>>>>> 21576d2886bdfcf96897cd8abe30f91ed3d803bb
 }
 /**
  * main - Entry point of the program

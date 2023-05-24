@@ -77,6 +77,7 @@ char *_getenv(const char *name)
 int _fputc(int c, FILE *stream)
 {
 	char buf[1];
+
 	buf[0] = c;
 
 	return (fwrite(buf, 1, 1, stream));
