@@ -44,17 +44,8 @@ int builtin_cd(char **args);
 int execute_exit(char **args);
 int execute_command(char **args);
 int execute_env(void);
-int myunsetenv(char *variable);
-int mysetenv(char *variable, char *value, int overwrite);
 int handle_semicolon(char *line);
-void non_interactive_mode(char *filename);
-void interactive_mode();
-void process_command(char *command, int counter);
-void non_interactive_mode(char *filename);
-void interactive_mode();
-void process_command(char *command, int counter);
 int _putenv(char *string);
-int cd(char *directory);
 /* helper function prototypes */
 int _atoi(const char *str);
 void free_args(char **args);
