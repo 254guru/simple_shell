@@ -7,7 +7,6 @@
  */
 int builtin_exit(void)
 {
-	exit(EXIT_SUCCESS);
 	return (0);
 }
 

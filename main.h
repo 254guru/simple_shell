@@ -43,7 +43,7 @@ char* getcwd_shell();
 int builtin_cd(char **args);
 int execute_exit(char **args);
 int execute_command(char **args);
-void execute_env(void);
+int execute_env(void);
 int handle_semicolon(char *line);
 int _putenv(char *string);
 int is_exit_command(char **args);
