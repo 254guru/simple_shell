@@ -55,7 +55,7 @@ int myunsetenv(char *variable)
 	return (0);
 }
 /**
- * putenv - Sets an environment variable.
+ * _putenv - Sets an environment variable.
  * @string: The string representing the environment variable to set.
  *
  * Return: 0 on success, -1 on failure.

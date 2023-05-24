@@ -24,7 +24,7 @@ extern char **environ;
 
 int print(void);
 int prompt(char **line);
-void print_prompt(void);
+void _print_prompt(void);
 ssize_t write(int fd, const void *buf, size_t count);
 char **parse_command(char *command);
 int builtin_exit(void);
