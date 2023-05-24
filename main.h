@@ -46,8 +46,11 @@ int execute_command(char **args);
 int execute_env(void);
 int handle_semicolon(char *line);
 int _putenv(char *string);
+int myunsetenv(char *variable);
+int mysetenv(char *variable, char *value, int overwrite);
 int is_exit_command(char **args);
 int get_exit_status(char **args);
+int cd(char *directory);
 /* helper function prototypes */
 int _atoi(const char *str);
 void free_args(char **args);
