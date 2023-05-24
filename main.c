@@ -2,8 +2,7 @@
 
 /*
  * print_prompt - Prints a prompt to the stdout stream
- *
- * Return: None.
+ * Return: void
  */
 void print_prompt(void)
 {
@@ -15,8 +14,8 @@ void print_prompt(void)
  * prompt - Reads a line of input from the user.
  * @line: Pointer to the variable where the input line will be stored.
  * Return: 1 if a line of input was successfully read.
- *		0 if the input line is empty or end of input is reached.
- *		-1 if an error occurred while reading input.
+ *	0 if the input line is empty or end of input is reached.
+ *	-1 if an error occurred while reading input.
  */
 int prompt(char **line)
 {
@@ -59,7 +58,7 @@ int main(int argc, char **argv, char **envp)
 	char *line = NULL, **args;
 	int exit_status;
 	int status;
-	(void) argc, 
+	(void)argc;
 	(void)envp;
 	program_name = argv[0];
 
