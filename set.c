@@ -45,9 +45,9 @@ int myunsetenv(char *variable)
 	if (_getenv(variable) == NULL)
 	{
 	_fputs("unsetenv: variable '", stderr);
-        _fputs(variable, stderr);
-        _fputs("' does not exist\n", stderr);
-        return (1);
+	_fputs(variable, stderr);
+	_fputs("' does not exist\n", stderr);
+	return (1);
 	}
 
 	unsetenv(variable);
@@ -62,25 +62,25 @@ int myunsetenv(char *variable)
  */
 int _putenv(char *string)
 {
-    int result;
-    char *equal_sign;
+	int result;
+	char *equal_sign;
 
-    if (string == NULL)
-        return (-1);
-    result = 0;
+	if (string == NULL)
+	return (-1);
+	result = 0;
 
-    equal_sign = _strchr(string, '=');
+	equal_sign = _strchr(string, '=');
 
-    if (equal_sign == NULL)
-    {
-        result = -1;
-    }
-    else
-    {
-        *equal_sign = '\0';
-        result = setenv(string, equal_sign + 1, 1);
-        *equal_sign = '='; 
-    }
+	if (equal_sign == NULL)
+	{
+	result = -1;
+	}
+	else
+	{
+	*equal_sign = '\0';
+	result = setenv(string, equal_sign + 1, 1);
+	*equal_sign = '=';
+	}
 
-    return (result);
+	return (result);
 }

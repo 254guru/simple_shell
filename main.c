@@ -33,6 +33,11 @@ int prompt(char **line)
 	else if (bytesRead == 0)
 	{
 	free(newLine);
+	if (feof(stdin))
+	{
+	printf("Control-D (EOF) encountered. Exiting shell.\n");
+	exit(0);
+	}
 	return (0);
 	}
 	else
