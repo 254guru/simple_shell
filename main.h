@@ -46,6 +46,8 @@ int execute_command(char **args);
 int execute_env(void);
 int handle_semicolon(char *line);
 int _putenv(char *string);
+int is_exit_command(char **args);
+int get_exit_status(char **args);
 /* helper function prototypes */
 int _atoi(const char *str);
 void free_args(char **args);

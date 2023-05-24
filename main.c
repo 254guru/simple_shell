@@ -27,10 +27,21 @@ int prompt(char **line)
 
 	if (bytesRead == -1)
 	{
+	if (feof(stdin))
+	{
+	free(newLine);
+	_puts("\n");
+	return (0);
+	}
+	else
+	{
+	perror("Input error");
 	free(newLine);
 	return (-1);
 	}
-	else if (bytesRead == 0)
+	}
+	else
+	if (bytesRead == 0)
 	{
 	free(newLine);
 	return (0);
@@ -38,9 +49,8 @@ int prompt(char **line)
 	else
 	{
 	if (newLine[bytesRead - 1] == '\n')
-	{
 	newLine[bytesRead - 1] = '\0';
-	}
+
 	free(*line);
 	*line = newLine;
 	return (1);
@@ -66,30 +76,20 @@ int main(int argc, char **argv, char **envp)
 	{
 		print_prompt();
 		if (prompt(&line) == -1)
-		{
 			exit(0);
-		}
+
 		args = split_line(line);
 		if (args == NULL)
 			continue;
+
 		if (args != NULL && *args != NULL)
 		{
-			if (_strcmp(args[0], "exit") == 0)
+			if (is_exit_command(args))
 			{
-				if (args[1] != NULL)
-				{
-					exit_status = _atoi(args[1]);
-
-					free(line);
-					free_args(args);
-					exit(exit_status);
-				}
-				else
-				{
-					free(line);
-					free_args(args);
-					exit(0);
-				}
+				exit_status = get_exit_status(args);
+				free(line);
+				free_args(args);
+				exit(exit_status);
 			}
 			status = execute(args);
 			free_args(args);
@@ -97,10 +97,37 @@ int main(int argc, char **argv, char **envp)
 
 		free(line);
 		line = NULL;
+
 		if (status == EXIT_SUCCESS)
 			continue;
 		else
 			break;
 	}
+
 	return (0);
 }
+
+/**
+ * is_exit_command - Check if the command is "exit"
+ * @args: Array of command-line arguments
+ * Return: 1 if it is an exit command, 0 otherwise
+ */
+int is_exit_command(char **args)
+{
+	return (_strcmp(args[0], "exit") == 0);
+}
+
+/**
+ * get_exit_status - Get the exit status from the command arguments
+ * @args: Array of command-line arguments
+ * Return: The exit status
+ */
+int get_exit_status(char **args)
+{
+	if (args[1] != NULL)
+		return (_atoi(args[1]));
+	else
+		return (0);
+}
+
+
