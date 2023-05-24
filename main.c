@@ -95,11 +95,6 @@ int main(int argc, char **argv, char **envp)
 			status = execute(args);
 			free_args(args);
 		}
-		 if (argc == 2) {
-        		non_interactive_mode(argv[1]);
-    		} else {
-        		interactive_mode();
-    		}
 
 		free(line);
 		line = NULL;
