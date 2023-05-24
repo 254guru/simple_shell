@@ -75,6 +75,7 @@ int execute_env(void)
  */
 int execute_command(char **args)
 {
+	int stat;
 	char *command_path = get_command_path(args[0]);
 
 	if (command_path != NULL)
@@ -96,7 +97,13 @@ int execute_command(char **args)
 	}
 	else
 	{
-	wait(NULL);
+	wait(&stat);
+	wait(&stat);
+		free(command_path);
+		if (WIFEXITED(stat))
+			stat = WEXITSTATUS(stat);
+		if (!isatty(STDIN_FILENO))
+			return (stat);
 	}
 	free(command_path);
 	}
