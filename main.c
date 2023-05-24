@@ -8,7 +8,8 @@ void print_prompt(void)
 {
 	char *prompt = "($) ";
 
-	write(STDOUT_FILENO, prompt, _strlen(prompt));
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, prompt, _strlen(prompt));
 }
 /**
  * prompt - Reads a line of input from the user.
