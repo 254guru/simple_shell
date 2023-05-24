@@ -47,25 +47,14 @@ int execute_env(void);
 int myunsetenv(char *variable);
 int mysetenv(char *variable, char *value, int overwrite);
 int handle_semicolon(char *line);
-<<<<<<< HEAD
 void non_interactive_mode(char *filename);
 void interactive_mode();
 void process_command(char *command, int counter);
-||||||| eff2488
-<<<<<<< HEAD
 void non_interactive_mode(char *filename);
 void interactive_mode();
 void process_command(char *command, int counter);
-=======
-=======
->>>>>>> c5c8aa3588653f04fcd3639aa42eb9a4eb9c33d7
 int _putenv(char *string);
-<<<<<<< HEAD
-||||||| eff2488
->>>>>>> 4a6289a460f2da4587bb123ae467b7eb1598be37
-=======
 int cd(char *directory);
->>>>>>> c5c8aa3588653f04fcd3639aa42eb9a4eb9c33d7
 /* helper function prototypes */
 int _atoi(const char *str);
 void free_args(char **args);
