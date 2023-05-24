@@ -78,7 +78,7 @@ int _putenv(char *string)
 	else
 	{
 	*equal_sign = '\0';
-	result = setenv(string, equal_sign + 1, 1);
+	result = mysetenv(string, equal_sign + 1, 1);
 	*equal_sign = '=';
 	}
 
