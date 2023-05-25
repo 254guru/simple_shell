@@ -1,6 +1,6 @@
 #include "main.h"
 
-/*
+/**
  * print_prompt - Prints a prompt to the stdout stream
  * Return: void
  */

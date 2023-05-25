@@ -19,7 +19,7 @@ int main(int argc, char **argv, char **envp)
 	{
 		print_prompt();
 		if (prompt(&line) == -1)
-			exit(0);
+			exit(1);
 
 		args = split_line(line);
 		if (args == NULL)
