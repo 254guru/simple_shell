@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * main - Entry point of the program
  * @argc: Number of command-line arguments
@@ -9,8 +10,7 @@
 int main(int argc, char **argv, char **envp)
 {
 	char *line = NULL, **args;
-	int exit_status;
-	int status;
+	int exit_status, status;
 	(void)argc;
 	(void)envp;
 	program_name = argv[0];
@@ -19,41 +19,29 @@ int main(int argc, char **argv, char **envp)
 	{
 		print_prompt();
 		if (prompt(&line) == -1)
-		{
 			exit(0);
-		}
+
 		args = split_line(line);
 		if (args == NULL)
 			continue;
-		if (args != NULL && *args != NULL)
-		{
-			if (_strcmp(args[0], "exit") == 0)
-			{
-				if (args[1] != NULL)
-				{
-					exit_status = _atoi(args[1]);
 
-					free(line);
-					free_args(args);
-					exit(exit_status);
-				}
-				else
-				{
-					free(line);
-					free_args(args);
-					exit(0);
-				}
-			}
-			status = execute(args);
+		if (_strcmp(args[0], "exit") == 0)
+		{
+			exit_status = (args[1] != NULL) ? _atoi(args[1]) : 0;
+			free(line);
 			free_args(args);
+			exit(exit_status);
 		}
 
+		status = execute(args);
+		free_args(args);
 		free(line);
 		line = NULL;
-		if (status == EXIT_SUCCESS)
-			continue;
-		else
+
+		if (status != EXIT_SUCCESS)
 			break;
 	}
+
 	return (0);
 }
+
