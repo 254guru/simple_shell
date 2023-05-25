@@ -10,37 +10,43 @@
  */
 ssize_t mygetline(char **lineptr, size_t *n, FILE *stream)
 {
-	char *line = NULL;
-	ssize_t bytes_read;
-	size_t line_size = 0;
+	static char buffer[BUFFER_SIZE];
+	static size_t position;
+	size_t bytes_read, line_size;
+	size_t new_position = position;
 
-	line = malloc(*n);
-	if (line == NULL)
+	if (lineptr == NULL || n == NULL || stream == NULL)
 	{
 		return (-1);
 	}
-	while ((bytes_read = getc(stream)) != EOF)
+	while ((bytes_read = read(fileno(stream), buffer + position,
+					BUFFER_SIZE - position)) > 0)
 	{
-		if (bytes_read == '\n')
+		position += bytes_read;
+		while (new_position > 0 && buffer[new_position - 1] != '\n')
 		{
-			break;
+			new_position--;
 		}
-		if (line_size == *n)
+		if (new_position > 0)
 		{
-			*n *= 2;
-			line = myrealloc(line, *n);
-			if (line == NULL)
-			{
-				return (-1);
-			}
+			line_size = new_position - position;
+			memcpy(*lineptr, buffer + position, line_size);
+			(*lineptr)[line_size] = '\0';
+
+			position = new_position + 1;
+
+			return (line_size);
 		}
-		line[line_size++] = bytes_read;
 	}
-	if (bytes_read == EOF)
+	if (bytes_read == 0)
 	{
-		line[line_size++] = '\0';
+		return (-1);
 	}
-	*lineptr = line;
+	line_size = position;
+	memcpy(*lineptr, buffer + position, line_size);
+	(*lineptr)[line_size] = '\0';
+	position = 0;
 
 	return (line_size);
+
 }
