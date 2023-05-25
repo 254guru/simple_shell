@@ -2,40 +2,45 @@
 #define BUFFER_SIZE 1024
 /**
  * mygetline - reads a line from STDIN
+ * @lineptr: *pointer to storage buffer
+ * @n: pointer to size of buffer
+ * @stream: file to read line from
  *
- * Return: void
+ * Return: chars read, otherwise -1
  */
-char *mygetline(void)
+ssize_t mygetline(char **lineptr, size_t *n, FILE *stream)
 {
-	static char buffer[BUFFER_SIZE];
-	static int buffer_index;
-	static int buffer_size;
 	char *line = NULL;
-	int line_index = 0;
-	char current_char;
+	ssize_t bytes_read;
+	size_t line_size = 0;
 
-	while (1)
+	line = malloc(*n);
+	if (line == NULL)
 	{
-		if (buffer_index >= buffer_size)
+		return (-1);
+	}
+	while ((bytes_read = getc(stream)) != EOF)
 	{
-		buffer_size = read(STDIN_FILENO, buffer, BUFFER_SIZE);
-		buffer_index = 0;
-		if (buffer_size <= 0)
+		if (bytes_read == '\n')
+		{
 			break;
+		}
+		if (line_size == *n)
+		{
+			*n *= 2;
+			line = myrealloc(line, *n);
+			if (line == NULL)
+			{
+				return (-1);
+			}
+		}
+		line[line_size++] = bytes_read;
 	}
-		current_char = buffer[buffer_index++];
-
-		if (current_char == '#' || current_char == '\n' || current_char == '\0')
-			break;
-		line = myrealloc(line, (line_index + 1) * sizeof(char));
-		line[line_index++] = current_char;
-	}
-
-	if (line_index > 0)
+	if (bytes_read == EOF)
 	{
-		line = myrealloc(line, (line_index + 1) * sizeof(char));
-		line[line_index] = '\0';
+		line[line_size++] = '\0';
 	}
+	*lineptr = line;
 
-	return (line);
+	return (line_size);
 }

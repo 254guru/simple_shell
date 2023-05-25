@@ -24,7 +24,7 @@ int prompt(char **line)
 	ssize_t bytesRead;
 	char *newLine = NULL;
 
-	bytesRead = getline(&newLine, &bufferSize, stdin);
+	bytesRead = mygetline(&newLine, &bufferSize, stdin);
 
 	if (bytesRead == -1)
 	{
