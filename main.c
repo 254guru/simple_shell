@@ -24,7 +24,6 @@ int main(int argc, char **argv, char **envp)
 		args = split_line(line);
 		if (args == NULL || args[0] == NULL)
 			continue;
-
 		if (_strcmp(args[0], "exit") == 0)
 		{
 			exit_status = (args[1] != NULL) ? _atoi(args[1]) : 0;
