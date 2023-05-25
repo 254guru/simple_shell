@@ -1,18 +1,13 @@
-#include "main.h"
+#include <stdio.h>
 
 /**
- * print - main function
+ * main - Entry point of the program
  *
- * Return: 0
+ * Return: Always 0 (Success)
  */
-
-int print(void)
+int main(void)
 {
-	char *message;
-	int len = 14;
-
-	message = "Hello, World!\n";
-
-	write(STDOUT_FILENO, message, len);
+	puts("Hello, World!");
 	return (0);
 }
+
