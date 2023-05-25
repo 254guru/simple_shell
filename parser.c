@@ -11,7 +11,7 @@ char **parse_command(char *command)
 	char **tokens = malloc(sizeof(char *) * MAX_TOKENS);
 	char *token;
 	int i = 0;
-	
+
 	if (!tokens)
 	{
 		perror("Failed to allocate memory");
