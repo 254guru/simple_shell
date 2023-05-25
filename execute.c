@@ -87,7 +87,7 @@ int execute_command(char **args)
 	if (execve(command_path, args, NULL) == -1)
 	{
 	perror("execve");
-	exit(EXIT_FAILURE);
+	exit(127);
 	}
 	}
 	else if (child_pid < 0)
