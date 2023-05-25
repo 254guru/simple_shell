@@ -13,11 +13,11 @@ int execute(char **args)
 	{
 		return (1);
 	}
-	else if (strcmp(args[0], "exit") == 0)
+	else if (_strcmp(args[0], "exit") == 0)
 	{
 		return (execute_exit(args));
 	}
-	else if (strcmp(args[0], "env") == 0)
+	else if (_strcmp(args[0], "env") == 0)
 	{
 		return (execute_env());
 	}
