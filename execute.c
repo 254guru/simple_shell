@@ -98,7 +98,6 @@ int execute_command(char **args)
 	else
 	{
 	wait(&stat);
-	wait(&stat);
 		free(command_path);
 		if (WIFEXITED(stat))
 			stat = WEXITSTATUS(stat);
