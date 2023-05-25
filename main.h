@@ -50,6 +50,7 @@ int myunsetenv(char *variable);
 int mysetenv(char *variable, char *value, int overwrite);
 int is_exit_command(char **args);
 int get_exit_status(char **args);
+char *mygetline(void);
 int cd(char *directory);
 /* helper function prototypes */
 int _atoi(const char *str);
@@ -66,6 +67,6 @@ int _fputs(const char *str, FILE *stream);
 int _fputc(int c, FILE *stream);
 char *_strcat(char *dest, const char *src);
 int _fputc(int c, FILE *stream);
-
+void *myrealloc(void *ptr, size_t size);
 #endif /* MAIN_H */
 
