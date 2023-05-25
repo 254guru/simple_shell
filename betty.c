@@ -5,7 +5,7 @@
  *
  * Return: Always 0 (Success)
  */
-int main(void)
+int custom(void)
 {
 	_puts("Hello, World!");
 	return (0);
