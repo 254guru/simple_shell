@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-	puts("Hello, World!");
+	_puts("Hello, World!");
 	return (0);
 }
 

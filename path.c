@@ -12,39 +12,39 @@ char *get_command_path(char *command)
 
 	if (_strchr(command, '/') != NULL)
 	{
-	return (_strdup(command));
+		return (_strdup(command));
 	}
 	path = _getenv("PATH");
 
 	if (path == NULL)
 	{
-	write(STDERR_FILENO, "Error retrieving PATH variable\n", 31);
-	return (NULL);
+		write(STDERR_FILENO, "Error retrieving PATH variable\n", 31);
+		return (NULL);
 	}
 	token = strtok(path, ":");
 
 	while (token != NULL)
 	{
-	dir = _strdup(token);
-	full_path = malloc(_strlen(dir) + _strlen(command) + 2);
-	if (full_path == NULL)
-	{
-	write(STDERR_FILENO, "Allocation error\n", 17);
-	free(dir);
-	return (NULL);
-	}
-	_strcpy(full_path, dir);
-	_strcat(full_path, "/");
-	_strcat(full_path, command);
+		dir = _strdup(token);
+		full_path = malloc(_strlen(dir) + _strlen(command) + 2);
+		if (full_path == NULL)
+		{
+			write(STDERR_FILENO, "Allocation error\n", 17);
+			free(dir);
+			return (NULL);
+		}
+		_strcpy(full_path, dir);
+		_strcat(full_path, "/");
+		_strcat(full_path, command);
 
-	if (access(full_path, X_OK) == 0)
-	{
-	free(dir);
-	return (full_path);
-	}
-	free(full_path);
-	free(dir);
-	token = strtok(NULL, ":");
+		if (access(full_path, X_OK) == 0)
+		{
+			free(dir);
+			return (full_path);
+		}
+		free(full_path);
+		free(dir);
+		token = strtok(NULL, ":");
 	}
 	return (NULL);
 }
@@ -63,8 +63,8 @@ char *build_command_path(char *directory, char *command)
 
 	if (path == NULL)
 	{
-	write(STDERR_FILENO, "Allocation error\n", 17);
-	exit(EXIT_FAILURE);
+		write(STDERR_FILENO, "Allocation error\n", 17);
+		exit(EXIT_FAILURE);
 	}
 	_strncpy(path, directory, directory_len);
 

@@ -11,19 +11,19 @@ int execute(char **args)
 {
 	if (args[0] == NULL)
 	{
-	return (1);
+		return (1);
 	}
 	else if (strcmp(args[0], "exit") == 0)
 	{
-	return (execute_exit(args));
+		return (execute_exit(args));
 	}
 	else if (strcmp(args[0], "env") == 0)
 	{
-	return (execute_env());
+		return (execute_env());
 	}
 	else
 	{
-	return (execute_command(args));
+		return (execute_command(args));
 	}
 }
 
@@ -38,13 +38,13 @@ int execute_exit(char **args)
 {
 	if (args[1] != NULL)
 	{
-	int status = _atoi(args[1]);
+		int status = _atoi(args[1]);
 
-	exit(status);
+		exit(status);
 	}
 	else
 	{
-	exit(EXIT_SUCCESS);
+		exit(EXIT_SUCCESS);
 	}
 }
 
@@ -59,9 +59,9 @@ int execute_env(void)
 
 	while (*env != NULL)
 	{
-	_fputs(*env, stdout);
-	_fputc('\n', stdout);
-	env++;
+		_fputs(*env, stdout);
+		_fputc('\n', stdout);
+		env++;
 	}
 	return (1);
 }
@@ -80,37 +80,37 @@ int execute_command(char **args)
 
 	if (command_path != NULL)
 	{
-	pid_t child_pid = fork();
+		pid_t child_pid = fork();
 
-	if (child_pid == 0)
-	{
-	if (execve(command_path, args, NULL) == -1)
-	{
-	perror("execve");
-	exit(127);
-	}
-	}
-	else if (child_pid < 0)
-	{
-	perror("fork");
-	exit(EXIT_FAILURE);
+		if (child_pid == 0)
+		{
+			if (execve(command_path, args, NULL) == -1)
+			{
+				perror("execve");
+				exit(EXIT_FAILURE);
+			}
+		}
+		else if (child_pid < 0)
+		{
+			perror("fork");
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			wait(&status);
+			if (WIFEXITED(status))
+			{
+				status = WEXITSTATUS(status);
+			}
+		}
+		free(command_path);
 	}
 	else
 	{
-	wait(&status);
-	if (WIFEXITED(status))
-	{
-		status = WEXITSTATUS(status);
-	}
-	}
-	free(command_path);
-	}
-	else
-	{
-	_fputs(program_name, stdout);
-	_fputs(": Command not found: ", stdout);
-	_fputs(args[0], stdout);
-	_fputc('\n', stdout);
+		_fputs(program_name, stdout);
+		_fputs(": Command not found: ", stdout);
+		_fputs(args[0], stdout);
+		_fputc('\n', stdout);
 	}
 	return (0);
 }

@@ -28,23 +28,23 @@ int prompt(char **line)
 
 	if (bytesRead == -1)
 	{
-	free(newLine);
-	return (-1);
+		free(newLine);
+		return (-1);
 	}
 	else if (bytesRead == 0)
 	{
-	free(newLine);
-	return (0);
+		free(newLine);
+		return (0);
 	}
 	else
 	{
-	if (newLine[bytesRead - 1] == '\n')
-	{
-	newLine[bytesRead - 1] = '\0';
-	}
-	free(*line);
-	*line = newLine;
-	return (1);
+		if (newLine[bytesRead - 1] == '\n')
+		{
+			newLine[bytesRead - 1] = '\0';
+		}
+		free(*line);
+		*line = newLine;
+		return (1);
 	}
 }
 
