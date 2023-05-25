@@ -98,15 +98,11 @@ int execute_command(char **args)
 		else
 		{
 		wait(&status);
-		if (WIFEXITED(status))
-		status = WEXITSTATUS(status);
-		if (!isatty(STDIN_FILENO))
-			return (status);
 		}
 		{
 		free(command_path);
 		}
-	}
+		}
 		else
 		{
 		_fputs(program_name, stdout);
