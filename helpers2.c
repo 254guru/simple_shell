@@ -42,20 +42,29 @@ char *_strdup(const char *str)
 }
 /**
  * _strcmp - compares two strings
- * @str1: first string
- * @str2: string to compare with str1
- *
- * Return: void
+ * @str1: char type
+ * @str2: char type
+ * Return: integer value
  */
 int _strcmp(const char *str1, const char *str2)
 {
+	if (str1 == NULL || str2 == NULL)
+	{
+	if (str1 == str2)
+	{
+	return (0);
+	}
+	return ((str1 == NULL) ? -1 : 1);
+	}
+
 	while (*str1 && (*str1 == *str2))
 	{
-		str1++;
-		str2++;
+	str1++;
+	str2++;
 	}
 	return (*(unsigned char *)str1 - *(unsigned char *)str2);
 }
+
 /**
  * _atoi - converts a string to an integer
  * @str: string to convert
