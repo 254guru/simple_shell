@@ -75,7 +75,7 @@ int execute_env(void)
  */
 int execute_command(char **args)
 {
-	int status;
+	/*int status;*/
 	char *command_path = get_command_path(args[0]);
 
 	if (command_path != NULL)
@@ -97,16 +97,16 @@ int execute_command(char **args)
 		}
 		else
 		{
-			wait(&status);
-			if (WIFEXITED(status))
-			{
-				status = WEXITSTATUS(status);
-			}
+		wait(NULL);
+		/*if (WIFEXITED(status))
+		{
+		status = WEXITSTATUS(status);
+		}*/
 		}
 		free(command_path);
-	}
-	else
-	{
+		}
+		else
+		{
 		_fputs(program_name, stdout);
 		_fputs(": Command not found: ", stdout);
 		_fputs(args[0], stdout);

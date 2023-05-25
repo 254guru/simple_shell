@@ -50,11 +50,11 @@ int _strcmp(const char *str1, const char *str2)
 {
 	if (str1 == NULL || str2 == NULL)
 	{
-	if (str1 == str2)
+		if (str1 == str2)
 	{
-	return (0);
+		return (0);
 	}
-	return ((str1 == NULL) ? -1 : 1);
+		return ((str1 == NULL) ? -1 : 1);
 	}
 	while (*str1 && (*str1 == *str2))
 	{
