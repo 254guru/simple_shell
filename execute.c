@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * execute - Execute a command with arguments
  *
@@ -65,6 +64,7 @@ int execute_env(void)
 	}
 	return (1);
 }
+
 /**
  * execute_command - Execute a command
  *
@@ -79,40 +79,35 @@ int execute_command(char **args)
 
 	if (command_path != NULL)
 	{
-	pid_t child_pid = fork();
+		pid_t child_pid = fork();
 
-	if (child_pid == 0)
-	{
-	if (execve(command_path, args, NULL) == -1)
-	{
-	perror("execve");
-	exit(127);
-	}
-	}
-	else if (child_pid < 0)
-	{
-	perror("fork");
-	exit(EXIT_FAILURE);
-	}
-	else
-	{
-	wait(&status);
-
-	if (WIFEXITED(status) && WEXITSTATUS(status) == 127)
-	{
-	_puts(args[0]);
-	_puts(": command not found");
-	_fputc('\n', stdout);
-	}
-	}
-	free(command_path);
-	}
-	else
-	{
-	_puts(args[0]);
-	_puts(": command not found");
-	_fputc('\n', stdout);
+		if (child_pid == 0)
+		{
+			if (execve(command_path, args, NULL) == -1)
+			{
+				perror("execve");
+				exit(EXIT_FAILURE);
+			}
+		}
+		else if (child_pid < 0)
+		{
+			perror("fork");
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+		wait(&status);
+		}
+		{
+		free(command_path);
+		}
+		}
+		else
+		{
+		_fputs(program_name, stdout);
+		_fputs(": Command not found: ", stdout);
+		_fputs(args[0], stdout);
+		_fputc('\n', stdout);
 	}
 	return (0);
 }
-
