@@ -19,7 +19,7 @@ int main(int argc, char **argv, char **envp)
 	{
 		print_prompt();
 		if (prompt(&line) == -1)
-			exit(0);
+			exit(exit_status);
 
 		args = split_line(line);
 		if (args == NULL || args[0] == NULL)
@@ -32,14 +32,16 @@ int main(int argc, char **argv, char **envp)
 			free_args(args);
 			exit(exit_status);
 		}
-
 		status = execute(args);
+
+		if (status != 0)
+			exit_status = 1;
+		else
+			exit_status = 0;
+
 		free_args(args);
 		free(line);
 		line = NULL;
-
-		if (status != EXIT_SUCCESS)
-			break;
 		}
 
 	return (0);

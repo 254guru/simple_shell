@@ -87,17 +87,19 @@ int execute_command(char **args)
 			if (execve(command_path, args, NULL) == -1)
 			{
 				perror("execve");
-				exit(1);
+				exit(EXIT_FAILURE);
 			}
 		}
 		else if (child_pid < 0)
 		{
 			perror("fork");
-			exit(127);
+			exit(EXIT_FAILURE);
 		}
 		else
 		{
 		wait(&status);
+		if (WIFEXITED(status))
+			return (WEXITSTATUS(status));
 		}
 		{
 		free(command_path);
@@ -111,6 +113,6 @@ int execute_command(char **args)
 		_fputs(": not found", stderr);
 		_fputc('\n', stderr);
 		}
-	return (0);
+	return (status);
 }
 
