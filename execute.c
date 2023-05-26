@@ -87,7 +87,7 @@ int execute_command(char **args)
 			if (execve(command_path, args, NULL) == -1)
 			{
 				perror("execve");
-				exit(127);
+				exit(EXIT_FAILURE);
 			}
 		}
 		else if (child_pid < 0)
@@ -98,6 +98,10 @@ int execute_command(char **args)
 		else
 		{
 		wait(&status);
+		if (WIFEXITED(status))
+			{
+				status = WEXITSTATUS(status);
+			}
 		}
 		{
 		free(command_path);
