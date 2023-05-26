@@ -67,6 +67,5 @@ int _fputc(int c, FILE *stream);
 char *_strcat(char *dest, const char *src);
 int _fputc(int c, FILE *stream);
 void *myrealloc(void *ptr, size_t size);
-ssize_t mygetline(char **lineptr, size_t *n, FILE *stream);
 #endif /* MAIN_H */
 

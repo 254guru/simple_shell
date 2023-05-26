@@ -98,10 +98,6 @@ int execute_command(char **args)
 		else
 		{
 		wait(&status);
-		if (WIFEXITED(status))
-			{
-				status = WEXITSTATUS(status);
-			}
 		}
 		{
 		free(command_path);
