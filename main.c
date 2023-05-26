@@ -19,10 +19,10 @@ int main(int argc, char **argv, char **envp)
 	{
 		print_prompt();
 		if (prompt(&line) == -1)
-			exit(1);
+			exit(0);
 
 		args = split_line(line);
-		if (args == NULL)
+		if (args == NULL || args[0] == NULL)
 			continue;
 
 		if (_strcmp(args[0], "exit") == 0)
