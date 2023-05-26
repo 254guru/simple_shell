@@ -10,7 +10,7 @@
 int main(int argc, char **argv, char **envp)
 {
 	char *line = NULL, **args;
-	int exit_status = 0, status;
+	int exit_status, status;
 	(void)argc;
 	(void)envp;
 	program_name = argv[0];
@@ -19,10 +19,10 @@ int main(int argc, char **argv, char **envp)
 	{
 		print_prompt();
 		if (prompt(&line) == -1)
-			exit(exit_status);
+			exit(1);
 
 		args = split_line(line);
-		if (args == NULL || args[0] == NULL)
+		if (args == NULL)
 			continue;
 
 		if (_strcmp(args[0], "exit") == 0)
@@ -32,18 +32,15 @@ int main(int argc, char **argv, char **envp)
 			free_args(args);
 			exit(exit_status);
 		}
+
 		status = execute(args);
-
-		if (status != 0)
-			exit_status = 1;
-		else
-			exit_status = 0;
-
 		free_args(args);
 		free(line);
 		line = NULL;
-		}
+
+		if (status != EXIT_SUCCESS)
+			break;
+	}
 
 	return (0);
 }
-
