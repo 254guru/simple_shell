@@ -10,7 +10,7 @@
 int main(int argc, char **argv, char **envp)
 {
 	char *line = NULL, **args;
-	int exit_status, status;
+	int exit_status = 0, status;
 	(void)argc;
 	(void)envp;
 	program_name = argv[0];
@@ -40,7 +40,7 @@ int main(int argc, char **argv, char **envp)
 
 		if (status != EXIT_SUCCESS)
 			break;
-	}
+		}
 
 	return (0);
 }

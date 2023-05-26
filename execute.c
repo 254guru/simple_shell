@@ -87,13 +87,13 @@ int execute_command(char **args)
 			if (execve(command_path, args, NULL) == -1)
 			{
 				perror("execve");
-				exit(EXIT_FAILURE);
+				exit(1);
 			}
 		}
 		else if (child_pid < 0)
 		{
 			perror("fork");
-			exit(EXIT_FAILURE);
+			exit(127);
 		}
 		else
 		{
@@ -105,11 +105,12 @@ int execute_command(char **args)
 		}
 		else
 		{
-		_fputs(program_name, stdout);
-		_fputs(": Command not found: ", stdout);
-		_fputs(args[0], stdout);
-		_fputc('\n', stdout);
-	}
+		_fputs(program_name, stderr);
+		_fputs(": 1: ", stderr);
+		_fputs(args[0], stderr);
+		_fputs(": not found", stderr);
+		_fputc('\n', stderr);
+		}
 	return (0);
 }
 
