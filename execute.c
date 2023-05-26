@@ -113,6 +113,6 @@ int execute_command(char **args)
 		_fputs(": not found", stderr);
 		_fputc('\n', stderr);
 		}
-	return (status);
+	return (0);
 }
 
